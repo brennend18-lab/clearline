@@ -54,7 +54,7 @@ function dayDiff(fromIso: string, toIso: string): number {
   return Math.floor((to - from) / 86_400_000);
 }
 
-/** Bucket entries into four weeks starting at plan.startDate. Entries outside the window are clamped to the nearest week. */
+/** Bucket entries into four weeks starting at plan.startDate. Entries outside the window are excluded. */
 export function weeklySummaries(plan: PersonalPlan, entries: ActivityEntry[]): WeekSummary[] {
   const weeks: WeekSummary[] = [0, 1, 2, 3].map((i) => ({
     weekIndex: i,
@@ -67,7 +67,8 @@ export function weeklySummaries(plan: PersonalPlan, entries: ActivityEntry[]): W
   const dayBuckets: Array<Set<string>> = [new Set(), new Set(), new Set(), new Set()];
   for (const e of entries) {
     const offset = dayDiff(plan.startDate, e.date);
-    const idx = Math.min(3, Math.max(0, Math.floor(offset / 7)));
+    if (offset < 0 || offset >= 28) continue;
+    const idx = Math.floor(offset / 7);
     weeks[idx].wageredCents += e.amountWageredCents;
     weeks[idx].netResultCents += e.netResultCents;
     weeks[idx].minutes += e.timeSpentMinutes;
@@ -81,6 +82,7 @@ export function comparePlanToRecorded(
   plan: PersonalPlan,
   entries: ActivityEntry[],
 ): PlanComparison {
+  entries = entries.filter(e => { const d = dayDiff(plan.startDate, e.date); return d >= 0 && d < 28; });
   const recordedWageredCents = sumWagered(entries);
   const recordedDays = countDistinctDays(entries);
   const recordedMinutes = sumMinutes(entries);

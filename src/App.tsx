@@ -3,7 +3,6 @@ import { SiteLayout } from "./components/SiteLayout";
 import { DemoStateProvider } from "./lib/DemoStateProvider";
 import { Landing } from "./pages/Landing";
 import { ForOrganizations } from "./pages/ForOrganizations";
-import { Trust } from "./pages/Trust";
 import { Deck } from "./pages/Deck";
 import { DemoLayout } from "./pages/demo/DemoLayout";
 import { Onboarding } from "./pages/demo/Onboarding";
@@ -12,13 +11,18 @@ import { Report } from "./pages/demo/Report";
 import { Actions } from "./pages/demo/Actions";
 import { NotFound } from "./pages/NotFound";
 
+import { MemberApp, SupportPage, PrivacyPage } from "./member/MemberApp";
+
 const routes = [
+  { path: "/account", element: <MemberApp /> },
+  { path: "/app", element: <MemberApp /> },
+  { path: "/support", element: <SupportPage /> },
+  { path: "/trust", element: <PrivacyPage /> },
   {
     element: <SiteLayout />,
     children: [
       { path: "/", element: <Landing /> },
       { path: "/for-organizations", element: <ForOrganizations /> },
-      { path: "/trust", element: <Trust /> },
       {
         element: <DemoLayout />,
         children: [
