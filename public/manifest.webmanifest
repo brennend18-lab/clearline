@@ -1,0 +1,27 @@
+{
+  "name": "Clearline",
+  "short_name": "Clearline",
+  "description": "A private view of your gambling activity and independent options for what to do next.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F8F7F3",
+  "theme_color": "#17324D",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

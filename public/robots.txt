@@ -1,0 +1,4 @@
+# Prototype. Not for indexing until the working name is cleared and the
+# regulatory claims have had legal review.
+User-agent: *
+Disallow: /
