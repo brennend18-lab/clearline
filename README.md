@@ -1,3 +1,9 @@
+# Clearline 0.2: member application and backend
+
+Start with [SETUP.md](./SETUP.md) for the new account, billing, database and deployment instructions. The historical prototype documentation below describes the original demo, not the new member backend.
+
+---
+
 # Clearline (prototype)
 
 An independent player-protection and support platform prototype: public
